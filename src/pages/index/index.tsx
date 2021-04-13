@@ -1,5 +1,5 @@
 import { Component, useState } from 'react'
-import { View, Text, Input, Button, EventProps, Checkbox, Label, CheckboxGroup, Navigator } from '@tarojs/components'
+import { View, Text, Input, Button, EventProps, Checkbox, Label, CheckboxGroup, Navigator, ScrollView } from '@tarojs/components'
 import { InputProps } from '@tarojs/components/types/Input'
 import Taro from '@tarojs/taro'
 import { CheckboxGroupProps } from '@tarojs/components/types/CheckboxGroup'

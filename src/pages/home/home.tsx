@@ -1,5 +1,5 @@
 import { Component, useState } from 'react'
-import { View, Text, Input, Button, EventProps, Checkbox, Label, CheckboxGroup } from '@tarojs/components'
+import { View, Text, Input, Button, EventProps, Checkbox, Label, CheckboxGroup, Swiper, SwiperItem, Image } from '@tarojs/components'
 import { InputProps } from '@tarojs/components/types/Input'
 
 import './home.scss'
@@ -39,6 +39,9 @@ export default () => {
     })
   }
 
+  const onInputEvent = ():void => {
+    console.log('跳转到搜索页面')
+  }
   
 //   Taro.startPullDownRefresh()
 usePullDownRefresh(() => {
@@ -54,22 +57,33 @@ usePullDownRefresh(() => {
 
   return (
     <View className="bg">
-      <View>
-      <CheckboxGroup onChange={handleCheck}>
-        {todoList.map(item => {
-          return (
-            <View key={item.text}>
-              <Label className={item.isComplete ? 'complete' : ''}>
-              <Checkbox value={item.text} />
-              <Text>{item.text}</Text>
-              </Label>
-            </View>
-          )
-        })}
-        </CheckboxGroup>
+      <View className="searchbox">
+        <Image className='search-icon' src='https://static.biyao.com/miniapp/search/icon-search.png'></Image>
+        <Input className="inputbox" placeholder="请输入要搜索的商品" placeholder-style="margin-left:20px;color:red"></Input>
       </View>
-      <Input value={newTodoText} onInput={handleInput} className="input"></Input>
-      <Button onClick={handleCLick}>add todo</Button>
+      <Swiper
+        className="page-section"
+        indicatorDots={true}
+        indicatorColor='#999'
+        indicatorActiveColor='#333'
+        vertical={false}
+        circular
+        autoplay={true}
+        interval={2000}
+      >
+          <SwiperItem className="swiper">
+            <Image className="img" mode="widthFix" src="https://aecpm.alicdn.com/simba/img/TB1XotJXQfb_uJkSnhJSuvdDVXa.jpg" />
+          </SwiperItem>
+          <SwiperItem className="swiper">
+          <Image className="img" mode="widthFix" src="https://aecpm.alicdn.com/simba/img/TB1JNHwKFXXXXafXVXXSutbFXXX.jpg" />
+          </SwiperItem>
+          <SwiperItem className="swiper">
+          <Image className="img" mode="widthFix" src="https://aecpm.alicdn.com/simba/img/TB183NQapLM8KJjSZFBSutJHVXa.jpg" />
+          </SwiperItem>
+      </Swiper>
+      
+      <Button onClick={handleCLick} className="btn">add todo</Button>
+
     </View>
   )
 }
