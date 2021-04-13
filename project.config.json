@@ -1,8 +1,8 @@
 {
-  "miniprogramRoot": "dist/",
+  "miniprogramRoot": "dist/weapp/",
   "projectname": "todoApp",
   "description": "A todo list mini app",
-  "appid": "touristappid",
+  "appid": "wx9dbe639206ccb917",
   "setting": {
     "urlCheck": true,
     "es6": false,
