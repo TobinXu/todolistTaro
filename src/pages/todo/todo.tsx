@@ -4,7 +4,7 @@ import { InputProps } from '@tarojs/components/types/Input'
 import Taro from '@tarojs/taro'
 import { CheckboxGroupProps } from '@tarojs/components/types/CheckboxGroup'
 
-import './index.scss'
+import './todo.scss'
 
 export default () => {
 
@@ -43,6 +43,7 @@ export default () => {
       })
     })
   }
+
   return (
     <View className="bg">
       <View>
@@ -64,7 +65,6 @@ export default () => {
       
       <Navigator url="/pages/home/home" openType="switchTab">去主页</Navigator>
     </View>
-    
   )
 }
 

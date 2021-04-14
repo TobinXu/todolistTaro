@@ -1,7 +1,8 @@
 export default {
   pages: [
     "pages/home/home",
-    'pages/index/index'
+    'pages/todo/todo',
+    "pages/mine/mine"
   ],
   "tabBar":{
     "list": [
@@ -11,10 +12,15 @@ export default {
         "iconPath":"resource/home.png",
         "selectedIconPath": "resource/home_on.png"
       },{
-      "pagePath":"pages/index/index",
+      "pagePath":"pages/todo/todo",
       "text":"todoList",
       "iconPath": "resource/todo_list.png",
       "selectedIconPath": "resource/todo_list_on.png"
+    },{
+      "pagePath":"pages/mine/mine",
+      "text":"Me",
+      "iconPath": "resource/me.png",
+      "selectedIconPath": "resource/me_on.png"
     }
     ]
   },
