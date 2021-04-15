@@ -2,7 +2,7 @@ export default {
   pages: [
     "pages/home/home",
     'pages/todo/todo',
-    "pages/mine/mine"
+    "pages/Mine/Mine"
   ],
   "tabBar":{
     "list": [
@@ -17,7 +17,7 @@ export default {
       "iconPath": "resource/todo_list.png",
       "selectedIconPath": "resource/todo_list_on.png"
     },{
-      "pagePath":"pages/mine/mine",
+      "pagePath":"pages/Mine/Mine",
       "text":"Me",
       "iconPath": "resource/me.png",
       "selectedIconPath": "resource/me_on.png"

@@ -1,0 +1,29 @@
+.hide {
+    display: none;
+}
+
+.btn_display {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.picker_group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.picker_first {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn_correct {
+    color: #3494FF;
+}
+
+.btn_cancel {
+    color: #9C9C9C;
+}

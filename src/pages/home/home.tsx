@@ -5,6 +5,8 @@ import { InputProps } from '@tarojs/components/types/Input'
 import './home.scss'
 import { CheckboxGroupProps } from '@tarojs/components/types/CheckboxGroup'
 import Taro, { render, usePullDownRefresh } from '@tarojs/taro'
+import PickeTimer from '../DateRangePicker/components/PickeTimer/PickTimer'
+import DateRangePicker from '../DateRangePicker/DateRangePicker'
 
 
 
@@ -85,7 +87,7 @@ usePullDownRefresh(() => {
         </Swiper>
         
         <Button onClick={handleCLick} className="btn">add todo</Button>
-  
+        <DateRangePicker></DateRangePicker>
       </View>
     )  
 }
