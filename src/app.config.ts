@@ -2,7 +2,8 @@ export default {
   pages: [
     "pages/home/home",
     'pages/todo/todo',
-    "pages/Mine/Mine"
+    "pages/Mine/Mine",
+    "pages/Webviewcom/Webviewcom"
   ],
   "tabBar":{
     "list": [
@@ -19,6 +20,11 @@ export default {
     },{
       "pagePath":"pages/Mine/Mine",
       "text":"Me",
+      "iconPath": "resource/me.png",
+      "selectedIconPath": "resource/me_on.png"
+    },{
+      "pagePath":"pages/Webviewcom/Webviewcom",
+      "text":"Webviewcom",
       "iconPath": "resource/me.png",
       "selectedIconPath": "resource/me_on.png"
     }
