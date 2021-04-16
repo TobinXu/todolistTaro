@@ -44,6 +44,8 @@ export default () => {
     })
   }
 
+ 
+
   return (
     <View className="bg">
       <View>
@@ -62,8 +64,8 @@ export default () => {
       </View>
       <Input value={newTodoText} onInput={handleInput} className="input" ></Input>
       <Button onClick={handleCLick}>add a todo</Button>
-      
       <Navigator url="/pages/home/home" openType="switchTab">去主页</Navigator>
+      
     </View>
   )
 }
