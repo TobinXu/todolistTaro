@@ -8,7 +8,7 @@ import { View, Text, Image } from '@tarojs/components'
 import RangePicker from "./rangePicker/index"
 // import LinkagePicker from "./linkagePicker/index"
 // import HalfPicker from "./halfPicker/index"
-// import DatePicker from "./datePicker/index"
+import DatePicker from "./datePicker/index"
 import PropTypes from 'prop-types';
 import './index.scss'
 
@@ -109,7 +109,7 @@ export default class WPicker extends React.Component {
             visible: false
         })
     }
-
+// 包装日期选择器
     render() {
         const { itemHeight, visible, result, confirmFlag, createKey } = this.state
         return (
@@ -121,13 +121,16 @@ export default class WPicker extends React.Component {
                         {this.props.children}
                         <Text style={{color:`${this.props.themeColor}`,fontWeight:'bold'}} onTap={this.pickerConfirm}>确定</Text>
                     </View>
-                    <View class="w-picker-header-text" >
+                   
+
+                    {this.props.mode == 'range' ? (
+                   <View>
+                        <View class="w-picker-header-text" >
                         <Text style={{fontWeight:'bold',color:'black',fontSize:14}}>{this.state.startDate}</Text>
                         <Image src='https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic.51yuansu.com%2Fpic2%2Fcover%2F00%2F42%2F53%2F581391f854cbb_610.jpg&refer=http%3A%2F%2Fpic.51yuansu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1621137584&t=0baa8d8abd4cf7013cae1eac8136da2a' style={{width:'20%',height:'70%'}}></Image>
                         <Text style={{fontWeight:'bold',color:'black',fontSize:14}}>{this.state.endDate}</Text>
-                    </View>
-
-                    {this.props.mode == 'range' ? (<RangePicker
+                        </View>
+                   <RangePicker
                         class="w-picker-wrapper"
                         startYear={this.props.startYear}
                         endYear={this.props.endYear}
@@ -136,8 +139,29 @@ export default class WPicker extends React.Component {
                         current={this.props.current}
                         change={this.handlerChange}
                         touchstart={this.touchStart}
-                        touchend={this.touchEnd}>
-                    </RangePicker>) : null}
+                        touchend={this.touchEnd}
+                   >
+                    </RangePicker>
+                    </View>
+                    ) : null}
+
+                    {this.props.mode == 'date' ? (
+                    <DatePicker
+                        class="w-picker-wrapper"
+                        startYear={this.props.startYear}
+                        endYear={this.props.endYear}
+                        value={this.props.value}
+                        fields={this.props.fields}
+                        itemHeight={itemHeight}
+                        current={this.props.current}
+                        disabledAfter={this.props.disabledAfter}
+                        change={this.handlerChange}
+                        touchstart={this.touchStart}
+                        touchend={this.touchEnd}
+                    >
+                    </DatePicker>                    
+                    )
+                    : null}
 
 
                     

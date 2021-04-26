@@ -20,7 +20,9 @@ export default class Webviewcom extends Component {
   
   render () {
     return (
-      <WebView src='https://mp.weixin.qq.com/' onMessage={this.handleMessage} />
+      // <WebView src='http://10.6.16.180:8080/greeter.html' onMessage={this.handleMessage} />
+      <WebView src='https://m.biyao.com' onMessage={this.handleMessage} />
+
     )
   }
 }

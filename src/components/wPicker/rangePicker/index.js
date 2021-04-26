@@ -1,16 +1,18 @@
 import Taro from '@tarojs/taro'
 import React, { Component } from 'react'
-import { View, PickerView, PickerViewColumn, Button } from '@tarojs/components'
+import { View, PickerView, PickerViewColumn } from '@tarojs/components'
 import './index.scss'
 import PropTypes from 'prop-types';
 let defaultTime = new Date().getFullYear()
 export default class RangePicker extends Component {
-
-    state = {
-        pickVal: [],
-        range: {},
-        checkObj: {},
-        values: null
+    constructor(props) {
+        super(props);
+        this.state = {
+            pickVal: [],
+            range: {},
+            checkObj: {},
+            values: null
+        }
     }
 
     componentWillMount() {
@@ -256,7 +258,7 @@ export default class RangePicker extends Component {
         let mode = this.props.mode;
         let col1, col2, col3, d, a, h, m;
         let xDate = new Date().getTime();
-        let range = this.state.range;
+        let range = Object.assign({}, this.state.range);
         let fyear = range.fyears[arr[0]] || range.fyears[range.fyears.length - 1];
         let fmonth = range.fmonths[arr[1]] || range.fmonths[range.fmonths.length - 1];
         let fday = range.fdays[arr[2]] || range.fdays[range.fdays.length - 1];
@@ -271,15 +273,25 @@ export default class RangePicker extends Component {
             range.tyears = resetData.tyears;
             range.tmonths = resetData.tmonths;
             range.tdays = resetData.tdays;
-            tyear = range.tyears[0];
-            checkObj.tyears = range.tyears[0];
-            tmonth = range.tmonths[0];
-            checkObj.tmonths = range.tmonths[0];
-            tday = range.tdays[0];
-            checkObj.tdays = range.tdays[0];
+            this.setState({
+                range
+            },()=>{
+                range = Object.assign({}, this.state.range);
+                tyear = range.tyears[0];
+                checkObj.tyears = range.tyears[0];
+                tmonth = range.tmonths[0];
+                checkObj.tmonths = range.tmonths[0];
+                tday = range.tdays[0];
+                checkObj.tdays = range.tdays[0];
+            })       
         }
         if (fyear != checkObj.fyear || fmonth != checkObj.fmonth) {
             range.fdays = resetData.fdays;
+            this.setState({
+                range
+            },()=>{
+                range = Object.assign({}, this.state.range);
+            }) 
         };
         if (tyear != checkObj.tyear) {
             arr[5] = 0;
@@ -287,24 +299,35 @@ export default class RangePicker extends Component {
             let toData = this.resetToData(fmonth, fday, tyear, tmonth);
             range.tmonths = toData.tmonths;
             range.tdays = toData.tdays;
-            tmonth = range.tmonths[0];
-            checkObj.tmonths = range.tmonths[0];
-            tday = range.tdays[0];
-            checkObj.tdays = range.tdays[0];
+            this.setState({
+                range
+            },()=>{
+                range = Object.assign({}, this.state.range);
+                tmonth = range.tmonths[0];
+                checkObj.tmonths = range.tmonths[0];
+                tday = range.tdays[0];
+                checkObj.tdays = range.tdays[0];
+            })            
         };
         if (tmonth != checkObj.tmonth) {
             arr[6] = 0;
             let toData = this.resetToData(fmonth, fday, tyear, tmonth);
             range.tdays = toData.tdays;
-            tday = range.tdays[0];
-            checkObj.tdays = range.tdays[0];
+            this.setState({
+                range
+            },()=>{
+                range = Object.assign({}, this.state.range);
+                tday = range.tdays[0];
+                checkObj.tdays = range.tdays[0];
+            })            
         };
         result = full = `${fyear + '-' + fmonth + '-' + fday + '至' + tyear + '-' + tmonth + '-' + tday}`;
         obj = {
             fyear, fmonth, fday, tyear, tmonth, tday
         }
         this.setState({
-            checkObj: obj
+            checkObj: obj,
+            pickVal: arr
         })
         Taro.nextTick(() => {
             this.setState({
@@ -319,27 +342,27 @@ export default class RangePicker extends Component {
     }
 
     render() {
-        const { pickVal }=this.state
+        const { pickVal,range }=this.state
         return (
             <View className='w-picker-view'>
                 <PickerView className="d-picker-view" indicatorStyle={this.props.itemHeight} value={pickVal} onChange={this.handlerChange}>
                     <PickerViewColumn className="w-picker-flex2">
                         {
-                            this.state.range.fyears.map((item, index) => {
+                            range.fyears.map((item, index) => {
                                 return (<View className="w-picker-item" key={index}>{item}年</View>)
                             })
                         }
                     </PickerViewColumn>
                     <PickerViewColumn className="w-picker-flex2">
                         {
-                            this.state.range.fmonths.map((item, index) => {
+                            range.fmonths.map((item, index) => {
                                 return (<View className="w-picker-item" key={index}>{item}月</View>)
                             })
                         }
                     </PickerViewColumn>
                     <PickerViewColumn className="w-picker-flex2">
                         {
-                            this.state.range.fdays.map((item, index) => {
+                            range.fdays.map((item, index) => {
                                 return (<View className="w-picker-item" key={index}>{item}日</View>)
                             })
                         }
@@ -349,28 +372,27 @@ export default class RangePicker extends Component {
                     </PickerViewColumn>
                     <PickerViewColumn className="w-picker-flex2">
                         {
-                            this.state.range.tyears.map((item, index) => {
+                            range.tyears.map((item, index) => {
                                 return (<View className="w-picker-item" key={index}>{item}年</View>)
                             })
                         }
                     </PickerViewColumn>
                     <PickerViewColumn className="w-picker-flex2">
                         {
-                            this.state.range.tmonths.map((item, index) => {
+                            range.tmonths.map((item, index) => {
                                 return (<View className="w-picker-item" key={index}>{item}月</View>)
                             })
                         }
                     </PickerViewColumn>
                     <PickerViewColumn className="w-picker-flex2">
                         {
-                            this.state.range.tdays.map((item, index) => {
+                            range.tdays.map((item, index) => {
                                 return (<View className="w-picker-item" key={index}>{item}日</View>)
                             })
                         }
                     </PickerViewColumn>
                 </PickerView>
             </View>
-
         )
     }
 }
